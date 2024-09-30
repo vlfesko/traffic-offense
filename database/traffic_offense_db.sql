@@ -319,6 +319,33 @@ ALTER TABLE `offense_list`
   ADD CONSTRAINT `offense_list_ibfk_1` FOREIGN KEY (`driver_id`) REFERENCES `drivers_list` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION;
 COMMIT;
 
+-- Auto ticket numbering
+
+DELIMITER //
+
+CREATE TRIGGER before_insert_offense_list
+    BEFORE INSERT ON offense_list
+    FOR EACH ROW
+BEGIN
+    DECLARE prefix VARCHAR(50);
+    DECLARE next_id INT;
+
+    -- Get the short_name from system_info
+    SELECT meta_value INTO prefix
+    FROM system_info
+    WHERE meta_field = 'department_short_name'
+    LIMIT 1;
+
+    -- Get the next ID
+    SELECT COALESCE(MAX(id), 0) + 1 INTO next_id
+    FROM offense_list;
+
+    -- Set the ticket_no
+    SET NEW.ticket_no = CONCAT(prefix, '-', LPAD(next_id, 4, '0'));
+END//
+
+DELIMITER ;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

@@ -45,7 +45,7 @@
                     <input type="text" class="form-control form-control-sm" name="department_name" id="department_name" value="<?php echo $_settings->info('department_name') ?>">
                 </div>
                 <div class="form-group">
-                    <label for="department_short_name" class="control-label">Department Ticket prefix</label>
+                    <label for="department_short_name" class="control-label">Department Short Name (Ticket prefix)</label>
                     <input type="text" class="form-control form-control-sm" name="department_short_name" id="department_short_name" value="<?php echo $_settings->info('department_short_name') ?>">
                 </div>
 
