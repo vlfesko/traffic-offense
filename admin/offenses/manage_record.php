@@ -7,8 +7,6 @@ if(isset($_GET['id']) && $_GET['id'] > 0){
         }
     }
 }
-
-$ticket_no = to_format_ticket_no($id);
 ?>
 <style>
     .uploaded_img{
