@@ -34,7 +34,7 @@ if(isset($_GET['id']) && $_GET['id'] > 0){
                 </div>
                 <div class="form-group">
                     <label class="control-label" for="ticket_no">Ticket No.</label>
-                    <input type="text" class="form-control" name="ticket_no" id="ticket_no" value="<?php echo isset($ticket_no) ? $ticket_no : '' ?>" disabled>
+                    <input type="text" class="form-control" name="ticket_no" id="ticket_no" value="<?php echo isset($ticket_no) ? $ticket_no : '[auto]' ?>" disabled>
                 </div>
                 <div class="form-group">
                     <label class="control-label" for="driver_id">Driver</label>
